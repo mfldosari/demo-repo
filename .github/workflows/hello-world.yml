@@ -1,12 +1,16 @@
-   name: Hello World Workflow
+name: Lint Test Deploy
 
-   on:
-      workflow_dispatch
+on: push
 
-   jobs:
-     say-hello:
-       runs-on: ubuntu-latest
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: code
+        uses: actions/checkout@v3
 
-       steps:
-       - name: Print Hello World
-         run: echo "Hello World!"
+      - name: install dep
+        run: npm install
+
+      - name: run linter
+        run: npm run lint
